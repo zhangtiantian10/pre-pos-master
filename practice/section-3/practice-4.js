@@ -2,67 +2,45 @@ function create_updated_collection(collection_a, object_b) {
   var collection_b = count_same_elements(collection_a);
   var newArray = [];
   for(var i = 0; i<collection_b.length;i++){
-    newArray[i] = isExit2(collection_b[i],object_b.value);
+    newArray[i] = fullThreeCutOne(collection_b[i],object_b.value);
   }
   return newArray;
 }
 
 function count_same_elements(collection) {
-  var arry1 = collection[0].split("-");
-  var arry = [];
-  if(arry1.length === 2)
+  var array1 = [];
+  var array = [];
+  for(var i = 0; i<collection.length;i++)
   {
-    arry = [{key:arry1[0],count: parseInt(arry1[1])}];
-  }
-  else {
-    arry = [{key:collection[0],count:1}];
-  }
-	for(var i = 1; i<collection.length;i++)
-	{
-    arry1 = collection[i].split("-");
-    if (arry1.length !=1) {
-      arry = isExit1(arry1,arry);
+    array1 = collection[i].split("-");
+    if (array1.length === 1) {
+      array = isExit(collection[i],array,1);
     }
     else {
-      arry = isExit(collection[i],arry);
+      array = isExit(array1[0],array,parseInt(array1[1]));
     }
-	}
-
-	return arry;
+  }
+  return array;
 }
 
-function isExit(element,collection){
+function isExit(element,collection,count){
   for(var i = 0; i<collection.length;i++)
   {
     if(element === collection[i].key)
     {
-      collection[i].count++;
+      collection[i].count += count;
       return collection;
     }
   }
-  collection[collection.length]={key:element,count:1};
+  collection.push({key:element,count:count});
   return collection;
 }
 
-function isExit1(arry1,arry){
-  for(var i = 0; i < arry.length; i++)
-  {
-
-    if(arry[i].key === arry1[0])
-    {
-      arry[i].count += parseInt(arry1[1]);
-      return arry;
-    }
-  }
-  arry[arry.length] = {key : arry1[0],count:parseInt(arry1[1])};
-  return arry;
-}
-
-function isExit2(element,object){
+function fullThreeCutOne(element, object){
   for(var i = 0; i<object.length;i++)
   {
     if (element.key === object[i]) {
-      element.count = element.count - parseInt(element.count/3);
+      element.count -= parseInt(element.count/3);
       return element;
     }
   }

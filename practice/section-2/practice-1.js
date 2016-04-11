@@ -1,11 +1,10 @@
 function count_same_elements(collection) {
-	var arry = [];
+	var array = [];
 	for(var i = 0; i<collection.length;i++)
 	{
-		arry = isExit(collection[i],arry);
+		array = isExit(collection[i],array);
 	}
-	console.log(arry);
-	return arry;
+	return array;
 }
 
 function isExit(element,collection){
@@ -17,6 +16,6 @@ function isExit(element,collection){
 			return collection;
 		}
 	}
-	collection[collection.length]={key:element,count:1};
+	collection[i]={key:element,count:1};
 	return collection;
 }

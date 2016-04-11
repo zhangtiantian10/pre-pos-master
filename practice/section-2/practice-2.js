@@ -1,42 +1,29 @@
 function count_same_elements(collection) {
-  var arry1 = [];
-  var arry = [];
+  var array1 = [];
+  var array = [];
 	for(var i = 0; i<collection.length;i++)
 	{
-    arry1 = collection[i].split("-");
-    if (arry1.length !=1) {
-      arry = isExit1(arry1,arry);
+    array1 = collection[i].split("-");
+    if (array1.length === 1) {
+      array = isExit(collection[i],array,1);
     }
     else {
-      arry = isExit(collection[i],arry);
+      array = isExit(array1[0],array,parseInt(array1[1]));
     }
 	}
-	return arry;
+	return array;
 }
 
-function isExit(element,collection){
+function isExit(element,collection,count){
 	for(var i = 0; i<collection.length;i++)
 	{
 		if(element === collection[i].key)
 		{
-			collection[i].count++;
+			collection[i].count += count;
 			return collection;
 		}
 	}
-	collection[collection.length]={key:element,count:1};
+	collection.push({key:element,count:count});
 	return collection;
 }
 
-function isExit1(arry1,arry){
-  for(var i = 0; i < arry.length; i++)
-  {
-
-    if(arry[i].key === arry1[0])
-    {
-      arry[i].count += parseInt(arry1[1]);
-      return arry;
-    }
-  }
-  arry[arry.length] = {key : arry1[0],count:parseInt(arry1[1])};
-  return arry;
-}

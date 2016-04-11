@@ -1,18 +1,17 @@
 function collect_same_elements(collection_a, object_b) {
-	var arry = [];
+	var array = [];
 	for(var i = 0 ;i<collection_a.length;i++)
 	{
 		if(isExit(collection_a[i].key,object_b.value))
-			arry.push(collection_a[i].key);
+			array.push(collection_a[i].key);
 	}
-
-	return arry;
+	return array;
 }
 
-function isExit(elemt,collection){
+function isExit(element,collection){
 	for(var i= 0; i<collection.length; i++)
 	{
-		if(elemt === collection[i])
+		if(element === collection[i])
 			return true;
 	}
 	return false;

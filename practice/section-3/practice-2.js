@@ -9,7 +9,7 @@ function isExit(element,object){
   for(var i = 0; i<object.length;i++)
   {
     if (element.key === object[i]) {
-      element.count = element.count - parseInt(element.count/3);
+      element.count -= parseInt(element.count/3);
       return element;
     }
   }

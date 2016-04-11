@@ -4,45 +4,25 @@ function count_same_elements(collection) {
   for (var i = 0; i < collection.length; i++) {
     collection_a = collection[i].split("");
     if (collection_a.length === 1)
-      newArray = isExit(collection[i],newArray);
+      newArray = isExit(collection[i], newArray, 1);
     else if (collection_a.length <= 4)
-      newArray = isExit1(collection_a,newArray);
-    else
-      newArray = isExit2(collection_a,newArray);
+      newArray = isExit(collection_a[0], newArray, parseInt(collection_a[2]));
+    else {
+      var count = parseInt(collection_a[2]*10) + parseInt(collection_a[3]);
+      newArray = isExit(collection_a[0], newArray,count);
+    }
   }
-  console.log(newArray);
   return newArray;
 }
 
-function isExit(collection_a,newArray){
+function isExit(collection_a,newArray,count){
   for (var j = 0; j < newArray.length; j++) {
     if (collection_a[0] === newArray[j].name) {
-      newArray[j].summary ++;
+      newArray[j].summary += count;
       return newArray;
     }
   }
-  newArray[newArray.length] = {name: collection_a[0], summary: 1};
+  newArray[j] = {name: collection_a[0], summary: count};
   return newArray;
 }
 
-function isExit1(collection_a,newArray){
-  for (var j = 0; j < newArray.length; j++) {
-    if (collection_a[0] === newArray[j].name) {
-      newArray[j].summary += parseInt(collection_a[2]);
-      return newArray;
-    }
-  }
-  newArray[newArray.length] = {name: collection_a[0], summary: parseInt(collection_a[2])};
-  return newArray;
-}
-
-function isExit2(collection_a,newArray){
-  for (var j = 0; j < newArray.length; j++) {
-    if (collection_a[0] === newArray[j].name) {
-      newArray[j].summary += (parseInt(collection_a[2])*10+parseInt(collection_a[3]));
-      return newArray;
-    }
-  }
-  newArray[newArray.length] = {name: collection_a[0], summary: (parseInt(collection_a[2])*10+parseInt(collection_a[3]))};
-  return newArray;
-}

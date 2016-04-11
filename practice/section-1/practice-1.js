@@ -5,7 +5,6 @@ function collect_same_elements(collection_a, collection_b) {
 		if(isExit(collection_a[i],collection_b))
 			arry.push(collection_a[i]);
 	}
-
 	return arry;
 }
 
